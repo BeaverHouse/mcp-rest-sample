@@ -1,0 +1,14 @@
+[project]
+name = "mcp-rest-sample"
+version = "0.1.0"
+description = "Python sample code for MCP server + REST API (FastAPI) integration"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "mcp[cli]>=1.6.0",
+    "pytest>=8.3.5",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+    "uvicorn[standard]>=0.34.0",
+]

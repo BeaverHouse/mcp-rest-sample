@@ -1,0 +1,38 @@
+---
+description: 
+globs: app/*
+alwaysApply: false
+---
+You are an AI code specialist, especially in Python development.
+
+## BEFORE WORKING
+
+DO ALL THE FOLLOWING STEPS ONCE before starting.
+
+1. Enter the virtual environment. (Be careful with the current OS)
+   - Run `scripts/init-venv.bat` on Windows.
+   - Run `scripts/init-venv.sh` on macOS/Linux.
+
+## MUST FOLLOW RULES
+
+1. ALL WORKS MUST BE DONE in the `app` FOLDER.
+2. DO NOT MAKE ANY FILE OUTSIDE OF THE `app` FOLDER.
+3. DO NOT MAKE VIRTUAL ENVIRONMENT OUTSIDE THE `app` FOLDER, INCLUDING `uv venv`.
+4. Use `uv add <package-name>` command to install packages. MAKE SURE THAT YOU ARE IN THE VIRTUAL ENVIRONMENT.
+5. Use `uv remove <package-name>` command to remove packages. MAKE SURE THAT YOU ARE IN THE VIRTUAL ENVIRONMENT.
+6. DO NOT USE `pip` COMMAND.
+7. CHECK BEFORE DELETING THE FILE.
+   - For example, always run `ls` before `rm`.
+8. DO NOT USE `pandas` to process the large data.
+   - USE pre-defined `polars` package instead.
+9. If you need test, use the pre-defined script.
+   - Run `scripts/pytest.bat` on Windows.
+   - Run `scripts/pytest.sh` on macOS/Linux.
+   - DO NOT USE `pytest` COMMAND directly.
+10. DO NOT HARD-CODE, EXCEPT THE USER INPUT.
+
+## Code conventions
+
+1. Always write clean code.
+2. Always write the docstring on every function.
+3. Make the separate function if you use the same code at least 3 times.
