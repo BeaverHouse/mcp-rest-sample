@@ -43,8 +43,7 @@ MCP boundaries are clear.
 
 ## MCP Status
 
-This template targets the MCP Python SDK v2 beta and the 2026-07-28 release
-candidate direction. That means:
+This template targets the MCP Python SDK v2 beta and the [2026-07-28 release candidate direction](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). That means:
 
 - Streamable HTTP is the primary transport.
 - `/mcp` is stateless HTTP in this sample.
