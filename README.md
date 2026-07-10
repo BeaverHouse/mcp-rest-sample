@@ -31,7 +31,7 @@
 This repository is a small backend template for services that need both:
 
 - human/API-client access through REST endpoints
-- agent access through MCP(Model Context Protocol) tools, resources, and prompts
+- agent access through MCP (Model Context Protocol) tools, resources, and prompts
 
 The app exposes one mock domain through both surfaces:
 
