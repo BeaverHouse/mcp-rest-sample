@@ -1,21 +1,37 @@
 <p align="center">
   <a href="https://github.com/BeaverHouse/mcp-rest-sample">
-    <img src="logo.png" alt="Logo" width="100" height="100">
+    <img src="logo.png" alt="Logo" height="100"> 
   </a>
+
+  <p align="center">
+    FastAPI backend template with MCP Streamable HTTP.
+  </p>
+
+  <p align="center">
+    <a href="https://python.org/">
+      <img src="https://img.shields.io/badge/Python-00ADD8.svg?style=flat&logo=python&logoColor=white" alt="Python">
+    </a>
+    <a href="https://fastapi.tiangolo.com/">
+      <img src="https://img.shields.io/badge/FastAPI-5391FE.svg?style=flat&logo=FastAPI&logoColor=white" alt="FastAPI">
+    </a>
+    <a href="https://uv.astral.sh/">
+      <img src="https://img.shields.io/badge/uv-004354.svg?style=flat&logo=uv&logoColor=white" alt="uv">
+    </a>
+    <a href="https://modelcontextprotocol.io">
+      <img src="https://img.shields.io/badge/MCP-111111.svg?style=flat&logo=modelcontextprotocol&logoColor=white" alt="MCP">
+    </a>
+    <a href="./LICENSE">
+      <img src="https://img.shields.io/github/license/BeaverHouse/mcp-rest-sample" alt="License">
+    </a>
+  </p>
 </p>
 
-<h1 align="center">mcp-rest-sample</h1>
-
-<p align="center">
-  FastAPI backend template with MCP Streamable HTTP.
-</p>
-
-## What This Is
+## Description
 
 This repository is a small backend template for services that need both:
 
 - human/API-client access through REST endpoints
-- agent access through Model Context Protocol tools, resources, and prompts
+- agent access through MCP(Model Context Protocol) tools, resources, and prompts
 
 The app exposes one mock domain through both surfaces:
 
@@ -34,6 +50,30 @@ candidate direction. That means:
 - `/mcp` is stateless HTTP in this sample.
 - The SDK version is pinned exactly because v2 is still a pre-release.
 - This is a template and learning sample, not a production MCP compatibility claim.
+
+## Auth Discovery
+
+This sample does not implement OAuth or OpenID Connect discovery. Some MCP
+clients may probe `.well-known` URLs before calling `/mcp`, such as:
+
+- `/.well-known/oauth-protected-resource/mcp`
+- `/mcp/.well-known/oauth-protected-resource`
+- `/.well-known/oauth-authorization-server/mcp`
+- `/.well-known/openid-configuration/mcp`
+
+Those requests can return `404 Not Found` in this local sample. That is expected
+as long as JSON-RPC requests to `/mcp` return `200 OK` or `202 Accepted`.
+
+To turn this into an authenticated HTTP MCP server, add:
+
+- OAuth 2.0 Protected Resource Metadata for the MCP resource server.
+- Authorization Server Metadata or a documented external authorization server.
+- `WWW-Authenticate` headers on `401 Unauthorized` responses that point clients
+  to the protected resource metadata.
+- Bearer token validation on every MCP HTTP request, including audience checks
+  so tokens are scoped to this MCP server.
+- Tests for anonymous access, invalid tokens, valid tokens, metadata discovery,
+  and token audience failures.
 
 ## Layout
 
@@ -81,10 +121,8 @@ uv audit
 the lockfile. Keep it visible, but treat upstream advisory availability and the
 current uv release status as operational context.
 
-## Template Notes
+## Key Notes
 
-- Keep REST routers thin: validate transport input, call internal logic, return typed models.
-- Keep MCP tools model-friendly: small arguments, clear docstrings, structured outputs.
-- Prefer MCP resources for read-only snapshots and tools for actions/workflows.
-- Keep mock fixtures until a real persistence boundary is needed.
+- Keep REST/MCP layers thin: validate transport input, call internal logic, return typed models.
+- Be cautious when you make MCP for irreversible or destructive actions.
 - Add auth, database, background work, and external clients as separate layers.
