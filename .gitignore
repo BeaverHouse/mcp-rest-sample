@@ -1,5 +1,8 @@
 # Python-generated files
 __pycache__/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
 *.py[oc]
 build/
 dist/
@@ -9,8 +12,8 @@ wheels/
 # Virtual environments
 .venv
 
-# Test files
-**/tests/files/*
-
 # Environment variables
 .env*
+
+# Custom
+.agent-cache/

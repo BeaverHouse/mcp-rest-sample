@@ -1,7 +1,0 @@
-{
-  "mcpServers": {
-    "MCP_SAMPLE": {
-      "url": "http://localhost:8001/api/sse"
-    }
-  }
-}
