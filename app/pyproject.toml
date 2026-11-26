@@ -5,7 +5,7 @@ description = "Modern FastAPI backend template with MCP Streamable HTTP"
 requires-python = ">=3.14,<3.15"
 dependencies = [
     "fastapi>=0.115.12",
-    "mcp[cli]==2.0.0b1",
+    "mcp[cli]==2.3.0",
     "pydantic-settings>=2.8.1",
     "uvicorn>=0.34.0",
 ]
